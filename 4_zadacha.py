@@ -18,6 +18,13 @@ class YandexMaps(QMainWindow):
             'l': 'map'
         }
         self.image_update()
+        self.map_btn.clicked.connect(self.map_format)
+        self.sat_btn.clicked.connect(self.map_format)
+        self.skl_btn.clicked.connect(self.map_format)
+        self.map_btn.setFocusPolicy(Qt.NoFocus)
+        self.sat_btn.setFocusPolicy(Qt.NoFocus)
+        self.skl_btn.setFocusPolicy(Qt.NoFocus)
+        self.count = 0
 
     def image_update(self):
         response = requests.get(self.server, params=self.request_params)
@@ -27,7 +34,6 @@ class YandexMaps(QMainWindow):
             print(self.server)
             print("Http статус:", response.status_code, "(", response.reason, ")")
             sys.exit(1)
-            pass
 
         self.map_file = "map.png"
         with open(self.map_file, "wb") as file:
@@ -68,6 +74,15 @@ class YandexMaps(QMainWindow):
         else:
             self.request_params['ll'] = f'{str(l1)},{str(l2)}'
             self.image_update()
+
+    def map_format(self):
+        if self.sender().objectName() == 'map_btn':
+            self.request_params['l'] = 'map'
+        elif self.sender().objectName() == 'sat_btn':
+            self.request_params['l'] = 'sat'
+        elif self.sender().objectName() == 'skl_btn':
+            self.request_params['l'] = 'sat,skl'
+        self.image_update()
 
     def closeEvent(self, event):
         os.remove(self.map_file)

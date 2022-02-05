@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8883c109-970b-4d63-865b-ac22990713c0" name="Changes" comment="start_scale">
+    <list default="true" id="8883c109-970b-4d63-865b-ac22990713c0" name="Changes" comment="end_first_group">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/3_zadacha.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +35,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Python/Винг/d.py" />
   </component>
-  <component name="RunManager" selected="Python.3_zadacha">
+  <component name="RunManager" selected="Python.4_zadacha">
     <configuration name="1_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,6 +99,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="4_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Gip4eer\AppData\Local\Programs\Python\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/4_zadacha.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_maps" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WEB-7" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,10 +143,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.4_zadacha" />
         <item itemvalue="Python.3_zadacha" />
         <item itemvalue="Python.2_zadacha" />
         <item itemvalue="Python.1_zadacha" />
-        <item itemvalue="Python.main_maps" />
         <item itemvalue="Python.main_maps" />
       </list>
     </recent_temporary>
@@ -166,7 +188,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644079949253</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="end_first_group">
+      <created>1644080241518</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644080241518</updated>
+    </task>
+    <task id="LOCAL-00006" summary="end_first_group">
+      <created>1644082325688</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1644082325688</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,6 +233,7 @@
     <MESSAGE value="start" />
     <MESSAGE value="start_wnd" />
     <MESSAGE value="start_scale" />
-    <option name="LAST_COMMIT_MESSAGE" value="start_scale" />
+    <MESSAGE value="end_first_group" />
+    <option name="LAST_COMMIT_MESSAGE" value="end_first_group" />
   </component>
 </project>
