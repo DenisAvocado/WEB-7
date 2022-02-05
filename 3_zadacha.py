@@ -21,12 +21,13 @@ class YandexMaps(QMainWindow):
 
     def image_update(self):
         response = requests.get(self.server, params=self.request_params)
-        print(response.url)
+
         if not response:
-            print("Ошибка выполнения запроса:")
-            print(self.map_request)
-            print("Http статус:", response.status_code, "(", response.reason, ")")
-            sys.exit(1)
+            # print("Ошибка выполнения запроса:")
+            # print(self.server)
+            # print("Http статус:", response.status_code, "(", response.reason, ")")
+            # sys.exit(1)
+            pass
 
         self.map_file = "map.png"
         with open(self.map_file, "wb") as file:
@@ -60,8 +61,13 @@ class YandexMaps(QMainWindow):
             l1 -= spn * 2.6
         if event.key() == Qt.Key_Right:
             l1 += spn * 2.6
-        self.request_params['ll'] = f'{str(l1)},{str(l2)}'
-        self.image_update()
+        if l2 >= 90 or l2 <= -90 or l1 >= 180 or l1 <= -180:
+            l1, l2 = 37.617563, 55.755841
+            self.request_params['ll'] = f'{str(l1)},{str(l2)}'
+            self.image_update()
+        else:
+            self.request_params['ll'] = f'{str(l1)},{str(l2)}'
+            self.image_update()
 
     def closeEvent(self, event):
         os.remove(self.map_file)
