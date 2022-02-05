@@ -2,6 +2,7 @@ import os
 import sys
 import requests
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
@@ -13,7 +14,7 @@ class YandexMaps(QMainWindow):
         self.server = 'http://static-maps.yandex.ru/1.x/'
         self.request_params = {
             'll': '37.530887,55.703118',
-            'spn': '0.002,0.002',
+            'z': '0',
             'l': 'map'
         }
         self.image_update()
@@ -34,6 +35,19 @@ class YandexMaps(QMainWindow):
         self.pixmap = QPixmap(self.map_file)
         self.pixmap = self.pixmap.scaled(650, 450)
         self.map.setPixmap(self.pixmap)
+
+    def scale_update(self, action):
+        if ((0 < int(self.request_params['z']) and action == '-') or
+                (21 > int(self.request_params['z']) and action == '+')):
+            scaling = 1 if action == '+' else -1
+            self.request_params['z'] = str(int(self.request_params['z']) + scaling)
+            self.image_update()
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_PageDown:
+            self.scale_update('-')
+        elif event.key() == Qt.Key_PageUp:
+            self.scale_update('+')
 
     def closeEvent(self, event):
         os.remove(self.map_file)
