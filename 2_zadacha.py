@@ -40,28 +40,12 @@ class YandexMaps(QMainWindow):
             self.scale_update('/')
         elif event.key() == Qt.Key_PageDown:
             self.scale_update('*')
-        else:
-            self.next_view(event)
 
     def scale_update(self, action):
         new_scale = eval(f"{float(self.request_params['spn'].split(',')[0])}{action}2")
         if 0.0001562 < new_scale < 90:
             self.request_params['spn'] = f'{new_scale},{new_scale}'
             self.image_update()
-
-    def next_view(self, event):
-        l1, l2 = [float(l) for l in self.request_params['ll'].split(',')]
-        spn = float(self.request_params['spn'].split(',')[0])
-        if event.key() == Qt.Key_Up:
-            l2 += spn * 1.1
-        if event.key() == Qt.Key_Down:
-            l2 -= spn * 1.1
-        if event.key() == Qt.Key_Left:
-            l1 -= spn * 2.6
-        if event.key() == Qt.Key_Right:
-            l1 += spn * 2.6
-        self.request_params['ll'] = f'{str(l1)},{str(l2)}'
-        self.image_update()
 
     def closeEvent(self, event):
         os.remove(self.map_file)
