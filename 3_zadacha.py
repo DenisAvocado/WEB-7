@@ -27,7 +27,6 @@ class YandexMaps(QMainWindow):
             print(self.server)
             print("Http статус:", response.status_code, "(", response.reason, ")")
             sys.exit(1)
-            pass
 
         self.map_file = "map.png"
         with open(self.map_file, "wb") as file:
