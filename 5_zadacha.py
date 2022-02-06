@@ -48,42 +48,6 @@ class YandexMaps(QMainWindow):
         self.delete_btn.setFocusPolicy(Qt.NoFocus)
         self.count = 0
 
-    def search_request(self):
-        coords = geocode(self.search_line.text())
-        self.request_params["ll"] = ",".join(coords.split())
-        self.request_params["pt"] = f"{','.join(coords.split())},vkbkm"
-        self.image_update()
-
-    def delete_marker(self):
-        if "pt" in self.request_params:
-            self.request_params.pop("pt")
-        self.search_line.setText("")
-        self.image_update()
-
-    def image_update(self):
-        response = requests.get(self.server, params=self.request_params)
-
-        if not response:
-            print("Ошибка выполнения запроса:")
-            print(response.url)
-            print("Http статус:", response.status_code, "(", response.reason, ")")
-            sys.exit(1)
-
-        self.map_file = "map.png"
-        with open(self.map_file, "wb") as file:
-            file.write(response.content)
-
-        self.pixmap = QPixmap(self.map_file)
-        self.map.setPixmap(self.pixmap)
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_PageUp:
-            self.scale_update('/')
-        elif event.key() == Qt.Key_PageDown:
-            self.scale_update('*')
-        else:
-            self.next_view(event)
-
     def scale_update(self, action):
         new_scale = eval(f"{float(self.request_params['spn'].split(',')[0])}{action}2")
         if 0.0001562 < new_scale < 90:
@@ -117,6 +81,42 @@ class YandexMaps(QMainWindow):
         elif self.sender().objectName() == 'skl_btn':
             self.request_params['l'] = 'sat,skl'
         self.image_update()
+
+    def search_request(self):
+        coords = geocode(self.search_line.text())
+        self.request_params["ll"] = ",".join(coords.split())
+        self.request_params["pt"] = f"{','.join(coords.split())},comma"
+        self.image_update()
+
+    def delete_marker(self):
+        if "pt" in self.request_params:
+            self.request_params.pop("pt")
+        self.search_line.setText("")
+        self.image_update()
+
+    def image_update(self):
+        response = requests.get(self.server, params=self.request_params)
+
+        if not response:
+            print("Ошибка выполнения запроса:")
+            print(response.url)
+            print("Http статус:", response.status_code, "(", response.reason, ")")
+            sys.exit(1)
+
+        self.map_file = "map.png"
+        with open(self.map_file, "wb") as file:
+            file.write(response.content)
+
+        self.pixmap = QPixmap(self.map_file)
+        self.map.setPixmap(self.pixmap)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_PageUp:
+            self.scale_update('/')
+        elif event.key() == Qt.Key_PageDown:
+            self.scale_update('*')
+        else:
+            self.next_view(event)
 
     def closeEvent(self, event):
         os.remove(self.map_file)
