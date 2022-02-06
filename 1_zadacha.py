@@ -24,7 +24,7 @@ class YandexMaps(QMainWindow):
 
         if not response:
             print("Ошибка выполнения запроса:")
-            print(self.map_request)
+            print(self.server)
             print("Http статус:", response.status_code, "(", response.reason, ")")
             sys.exit(1)
 
