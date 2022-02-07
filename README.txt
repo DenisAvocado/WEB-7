@@ -1,4 +1,4 @@
-яннрберярбхе пс тюикюл UI тюикнб
+Accordance PY file to UI file
 
 maps.ui - zadacha 1
 		  2
