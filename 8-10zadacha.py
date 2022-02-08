@@ -56,6 +56,8 @@ class YandexMaps(QMainWindow):
         self.skl_btn.setFocusPolicy(Qt.NoFocus)
         self.search_btn.setFocusPolicy(Qt.NoFocus)
         self.delete_btn.setFocusPolicy(Qt.NoFocus)
+        self.full_address.setFocusPolicy(Qt.NoFocus)
+        self.post_index.setFocusPolicy(Qt.NoFocus)
         self.count = 0
         self.cur_post_state = 0
 
