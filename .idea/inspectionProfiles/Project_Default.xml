@@ -1,20 +1,36 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+    <inspection_tool class="PyRedeclarationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredNames">
+        <list>
+          <option value="exit" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStubPackagesAdvertiser" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
-        <value>
-          <list size="8">
-            <item index="0" class="java.lang.String" itemvalue="PyQt5-Qt5" />
-            <item index="1" class="java.lang.String" itemvalue="PyQt5" />
-            <item index="2" class="java.lang.String" itemvalue="pyqt5-plugins" />
-            <item index="3" class="java.lang.String" itemvalue="PyQt5-sip" />
-            <item index="4" class="java.lang.String" itemvalue="pyqt5-tools" />
-            <item index="5" class="java.lang.String" itemvalue="PyQt5-stubs" />
-            <item index="6" class="java.lang.String" itemvalue="docx" />
-            <item index="7" class="java.lang.String" itemvalue="Pillow" />
-          </list>
-        </value>
+        <list>
+          <option value="PyQt5-stubs==5.15.2.0" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnboundLocalVariableInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="PyQt5.QtGui.*" />
+          <option value="PyQt5.QtWidgets.clicked.connect" />
+          <option value="os.path" />
+          <option value="player.all_sprites" />
+          <option value="player.COUNT_MONEY" />
+          <option value="Menu.*" />
+          <option value="schedule.every" />
+          <option value="schedule.run_pending" />
+          <option value="schedule.CancelJob" />
+          <option value="main.*" />
+        </list>
       </option>
     </inspection_tool>
   </profile>
