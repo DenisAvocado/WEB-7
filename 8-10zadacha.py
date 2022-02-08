@@ -76,12 +76,12 @@ class YandexMaps(QMainWindow):
         self.count = 0
         self.cur_post_state = 0
 
-    def search_request(self):
+    def search_request(self, address):
         try:
-            coords = geocode(self.search_line.text())
-            address = full_adr(self.search_line.text())[0]
+            coords = geocode(address)
+            address_out = full_adr(address)[0]
             if self.cur_post_state == 1:
-                address += f"\n{full_adr(self.search_line.text())[1]}"
+                address += f"\n{full_adr(address)[1]}"
             self.full_address.setText(str(address))
             self.request_params["ll"] = ",".join(coords.split())
             self.request_params["pt"] = f"{','.join(coords.split())},vkbkm"
@@ -180,7 +180,10 @@ class YandexMaps(QMainWindow):
         else:
             self.post_index.setStyleSheet("background-color: white")
         if self.full_address.toPlainText() != "":
-            self.search_request()
+            if self.search_line.text():
+                self.search_request(self.search_line.text())
+            elif self.full_address.toPlainText():
+                self.search_request(self.full_address.toPlainText())
 
     def closeEvent(self, event):
         os.remove(self.map_file)
