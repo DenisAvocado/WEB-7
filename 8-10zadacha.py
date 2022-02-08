@@ -42,7 +42,8 @@ class YandexMaps(QMainWindow):
         self.request_params = {
             'll': '37.530887,55.703118',
             'spn': '0.005,0.005',
-            'l': 'map'
+            'l': 'map',
+            'size': '650,450'
         }
         self.image_update()
         self.map_btn.clicked.connect(self.map_format)
@@ -106,6 +107,18 @@ class YandexMaps(QMainWindow):
             self.next_view(event)
 
     def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            if 651 > event.x() > 0 and 451 > event.y() > 0:
+                x_spn = float(self.request_params['spn'].split(',')[0]) * 2.8 / 650 * event.x()
+                y_spn = float(self.request_params['spn'].split(',')[1]) * 1.1 / 450 * (450 - event.y())
+                x = float(self.request_params['ll'].split(',')[0]) - float(self.request_params['spn'].split(',')[0]) / 2
+                y = float(self.request_params['ll'].split(',')[1]) - float(self.request_params['spn'].split(',')[1]) / 2
+                print(x_spn, x)
+                print(y_spn, y)
+                self.request_params["pt"] = \
+                    f"{x_spn + x},{y_spn + y},vkbkm"
+                self.image_update()
+
         self.search_line.setEnabled(not self.search_line.isEnabled())
 
     def scale_update(self, action):
@@ -122,9 +135,9 @@ class YandexMaps(QMainWindow):
         if event.key() == Qt.Key_Down:
             l2 -= spn * 1.1
         if event.key() == Qt.Key_Left:
-            l1 -= spn * 2.6
+            l1 -= spn * 2.8
         if event.key() == Qt.Key_Right:
-            l1 += spn * 2.6
+            l1 += spn * 2.8
         if l2 >= 90 or l2 <= -90 or l1 >= 180 or l1 <= -180:
             l1, l2 = 37.617563, 55.755841
             self.request_params['ll'] = f'{str(l1)},{str(l2)}'
