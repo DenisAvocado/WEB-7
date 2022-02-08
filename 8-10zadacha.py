@@ -34,6 +34,20 @@ def full_adr(address):
         return toponym_address, post
 
 
+def coords_to_address(coords):
+    request = f'http://geocode-maps.yandex.ru/1.x/?apikey={API_KEY}&geocode={coords}&format=json'
+    response = requests.get(request)
+    if response:
+        json_response = response.json()
+        toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
+        toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["text"]
+        try:
+            post = toponym["metaDataProperty"]["GeocoderMetaData"]["Address"]['postal_code']
+        except Exception:
+            post = "Невозможно определить почтовый индекс"
+        return toponym_address, post
+
+
 class YandexMaps(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -111,19 +125,23 @@ class YandexMaps(QMainWindow):
             if 651 > event.x() > 0 and 451 > event.y() > 0:
                 x_spn = float(self.request_params['spn'].split(',')[0]) * 2.8 / 650 * event.x()
                 y_spn = float(self.request_params['spn'].split(',')[1]) * 1.1 / 450 * (450 - event.y())
-                x = float(self.request_params['ll'].split(',')[0]) - float(self.request_params['spn'].split(',')[0]) / 2
-                y = float(self.request_params['ll'].split(',')[1]) - float(self.request_params['spn'].split(',')[1]) / 2
-                print(x_spn, x)
-                print(y_spn, y)
+                x = float(self.request_params['ll'].split(',')[0]) - \
+                    float(self.request_params['spn'].split(',')[0]) * 2.8 / 2
+                y = float(self.request_params['ll'].split(',')[1]) - \
+                    float(self.request_params['spn'].split(',')[1]) * 1.1 / 2
                 self.request_params["pt"] = \
                     f"{x_spn + x},{y_spn + y},vkbkm"
                 self.image_update()
+                address = coords_to_address(f"{x_spn + x},{y_spn + y}")[0]
+                if self.cur_post_state == 1:
+                    address += f"\n{coords_to_address(f'{x_spn + x},{y_spn + y}')[1]}"
+                self.full_address.setText(str(address))
 
         self.search_line.setEnabled(not self.search_line.isEnabled())
 
     def scale_update(self, action):
         new_scale = eval(f"{float(self.request_params['spn'].split(',')[0])}{action}2")
-        if 0.0001562 < new_scale < 90:
+        if 0.0001562 < new_scale < 50:
             self.request_params['spn'] = f'{new_scale},{new_scale}'
             self.image_update()
 
