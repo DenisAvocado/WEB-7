@@ -1,4 +1,4 @@
-Accordance аг FILES TO UI FILES
+Accordance PY FILES TO UI FILES
 
 maps.ui - zadacha 1
 		  2
