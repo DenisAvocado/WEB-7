@@ -51,7 +51,7 @@ def coords_to_address(coords):
 class YandexMaps(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('maps_2.ui', self)
+        uic.loadUi('maps.ui', self)
         self.server = 'http://static-maps.yandex.ru/1.x/'
         self.request_params = {
             'll': '37.530887,55.703118',
