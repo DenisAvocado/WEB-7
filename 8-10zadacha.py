@@ -66,35 +66,9 @@ class YandexMaps(QMainWindow):
         self.search_btn.clicked.connect(self.search_request)
         self.delete_btn.clicked.connect(self.delete_marker)
         self.post_index.clicked.connect(self.post_index_state)
-        self.map_btn.setFocusPolicy(Qt.NoFocus)
-        self.sat_btn.setFocusPolicy(Qt.NoFocus)
-        self.skl_btn.setFocusPolicy(Qt.NoFocus)
-        self.search_btn.setFocusPolicy(Qt.NoFocus)
-        self.delete_btn.setFocusPolicy(Qt.NoFocus)
-        self.full_address.setFocusPolicy(Qt.NoFocus)
-        self.post_index.setFocusPolicy(Qt.NoFocus)
         self.count = 0
         self.cur_post_state = 0
-
-    def search_request(self, address):
-        try:
-            coords = geocode(address)
-            address_out = full_adr(address)[0]
-            if self.cur_post_state == 1:
-                address += f"\n{full_adr(address)[1]}"
-            self.full_address.setText(str(address))
-            self.request_params["ll"] = ",".join(coords.split())
-            self.request_params["pt"] = f"{','.join(coords.split())},vkbkm"
-            self.image_update()
-        except Exception:
-            self.statusBar().showMessage("Некорректный запрос. Попробуйте еще раз.", 1000)
-
-    def delete_marker(self):
-        if "pt" in self.request_params:
-            self.request_params.pop("pt")
-        self.search_line.setText("")
-        self.full_address.setText("")
-        self.image_update()
+        self.org_was_searched = False
 
     def image_update(self):
         response = requests.get(self.server, params=self.request_params)
@@ -112,37 +86,97 @@ class YandexMaps(QMainWindow):
         self.pixmap = QPixmap(self.map_file)
         self.map.setPixmap(self.pixmap)
 
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_PageUp:
-            self.scale_update('/')
-        elif event.key() == Qt.Key_PageDown:
-            self.scale_update('*')
-        else:
-            self.next_view(event)
+    def search_organization(self, coords, address):
+        search_api_server = "https://search-maps.yandex.ru/v1/"
+        api_key = "dda3ddba-c9ea-4ead-9010-f43fbc15c6e3"
+        search_params = {
+            "apikey": api_key,
+            "text": address,
+            "lang": "ru_RU",
+            "ll": coords,
+            "type": "biz"
+        }
+        try:
+            response = requests.get(search_api_server, params=search_params)
+            json_response = response.json()
+            organization = json_response["features"][0]
+            org_name = organization["properties"]["CompanyMetaData"]["name"]
+            org_address = organization["properties"]["CompanyMetaData"]["address"]
+            type_org = organization["properties"]["CompanyMetaData"]["Categories"][0]['name']
+            org_coords = organization["geometry"]['coordinates']
+            spn_len = (abs(float(coords.split(',')[0]) - org_coords[0]) ** 2 +
+                       abs(float(coords.split(',')[1]) - org_coords[1]) ** 2) ** 0.5
+            if spn_len <= 0.001:
+                self.org_was_searched = True
+                org_address += f"\n{full_adr(org_address)[1]}"
+                self.full_address.setText(f'{type_org} "{org_name}"\n\n{address}')
+        except Exception:
+            self.statusBar().showMessage("Организации не найдены.", 3000)
 
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            if 651 > event.x() > 0 and 451 > event.y() > 0:
-                x_spn = float(self.request_params['spn'].split(',')[0]) * 2.8 / 650 * event.x()
-                y_spn = float(self.request_params['spn'].split(',')[1]) * 1.1 / 450 * (450 - event.y())
-                x = float(self.request_params['ll'].split(',')[0]) - \
-                    float(self.request_params['spn'].split(',')[0]) * 2.8 / 2
-                y = float(self.request_params['ll'].split(',')[1]) - \
-                    float(self.request_params['spn'].split(',')[1]) * 1.1 / 2
-                self.request_params["pt"] = \
-                    f"{x_spn + x},{y_spn + y},vkbkm"
-                self.image_update()
-                address = coords_to_address(f"{x_spn + x},{y_spn + y}")[0]
+    def search_completion(self, address, coords):
+        self.full_address.setText(str(address))
+        self.request_params["ll"] = ",".join(coords.split())
+        self.request_params["pt"] = f"{','.join(coords.split())},comma"
+        self.image_update()
+
+    def search_request(self):
+        self.org_was_searched = False
+        try:
+            coords = geocode(self.search_line.text())
+            address = full_adr(self.search_line.text())[0]
+            if self.cur_post_state == 1:
+                address += f"\n{full_adr(self.search_line.text())[1]}"
+            self.search_completion(address, coords)
+        except Exception:
+            self.statusBar().showMessage("Некорректный запрос. Попробуйте еще раз.", 3000)
+
+    def post_index_state(self):
+        self.cur_post_state = (self.cur_post_state + 1) % 2
+        if self.cur_post_state == 1:
+            self.post_index.setStyleSheet("background-color: green")
+        else:
+            self.post_index.setStyleSheet("background-color: white")
+        if self.full_address.toPlainText() != "":
+            if self.search_line.text() and not self.org_was_searched:
+                self.search_request()
+            elif self.org_was_searched:
+                name = self.full_address.toPlainText().split('\n')[0]
+                address = self.full_address.toPlainText().split("\n")[2]
+                address = f'{full_adr(address)[0]}'
                 if self.cur_post_state == 1:
-                    address += f"\n{coords_to_address(f'{x_spn + x},{y_spn + y}')[1]}"
+                    address += f"\n{full_adr(address)[1]}"
+                self.full_address.setText(f'{name}\n\n{address}')
+            else:
+                address = f"{full_adr(self.full_address.toPlainText())[0]}"
+                if self.cur_post_state == 1:
+                    address += f"\n{full_adr(address)[1]}"
                 self.full_address.setText(str(address))
 
-        self.search_line.setEnabled(not self.search_line.isEnabled())
+    def delete_marker(self):
+        if "pt" in self.request_params:
+            self.request_params.pop("pt")
+        self.search_line.setText("")
+        self.full_address.setText("")
+        self.image_update()
 
-    def scale_update(self, action):
-        new_scale = eval(f"{float(self.request_params['spn'].split(',')[0])}{action}2")
-        if 0.0001562 < new_scale < 50:
-            self.request_params['spn'] = f'{new_scale},{new_scale}'
+    def click_check(self, event, org_search=False):
+        if 651 > event.x() > 0 and 451 > event.y() > 0:
+            self.org_was_searched = False
+            x_spn = float(self.request_params['spn'].split(',')[0]) * 2.8 / 650 * event.x()
+            y_spn = float(self.request_params['spn'].split(',')[1]) * 1.1 / 450 * (450 - event.y())
+            x = float(self.request_params['ll'].split(',')[0]) - \
+                float(self.request_params['spn'].split(',')[0]) * 2.8 / 2
+            y = float(self.request_params['ll'].split(',')[1]) - \
+                float(self.request_params['spn'].split(',')[1]) * 1.1 / 2
+            self.request_params["pt"] = \
+                f"{x_spn + x},{y_spn + y},comma"
+            address = coords_to_address(f"{x_spn + x},{y_spn + y}")[0]
+            if self.cur_post_state == 1:
+                address += f"\n{coords_to_address(f'{x_spn + x},{y_spn + y}')[1]}"
+            if org_search:
+                self.search_organization(f"{x_spn + x},{y_spn + y}", address)
+            else:
+                self.full_address.setText(str(address))
             self.image_update()
 
     def next_view(self, event):
@@ -164,6 +198,12 @@ class YandexMaps(QMainWindow):
             self.request_params['ll'] = f'{str(l1)},{str(l2)}'
             self.image_update()
 
+    def scale_update(self, action):
+        new_scale = eval(f"{float(self.request_params['spn'].split(',')[0])}{action}2")
+        if 0.0001562 < new_scale < 30:
+            self.request_params['spn'] = f'{new_scale},{new_scale}'
+            self.image_update()
+
     def map_format(self):
         if self.sender().objectName() == 'map_btn':
             self.request_params['l'] = 'map'
@@ -173,17 +213,22 @@ class YandexMaps(QMainWindow):
             self.request_params['l'] = 'sat,skl'
         self.image_update()
 
-    def post_index_state(self):
-        self.cur_post_state = (self.cur_post_state + 1) % 2
-        if self.cur_post_state == 1:
-            self.post_index.setStyleSheet("background-color: green")
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_PageUp:
+            self.scale_update('/')
+        elif event.key() == Qt.Key_PageDown:
+            self.scale_update('*')
+        elif event.key() == Qt.Key_Return:
+            self.search_request()
         else:
-            self.post_index.setStyleSheet("background-color: white")
-        if self.full_address.toPlainText() != "":
-            if self.search_line.text():
-                self.search_request(self.search_line.text())
-            elif self.full_address.toPlainText():
-                self.search_request(self.full_address.toPlainText())
+            self.next_view(event)
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.click_check(event)
+        elif event.button() == Qt.RightButton:
+            self.click_check(event, True)
+        self.search_line.setEnabled(not self.search_line.isEnabled())
 
     def closeEvent(self, event):
         os.remove(self.map_file)
