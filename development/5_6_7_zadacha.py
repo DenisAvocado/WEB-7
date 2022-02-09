@@ -7,6 +7,20 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
 
+API_KEY = "40d1649f-0493-4b70-98ba-98533de7710b"
+
+
+def geocode(address):
+    request = f'http://geocode-maps.yandex.ru/1.x/?apikey={API_KEY}&geocode={address}&format=json'
+    response = requests.get(request)
+    if response:
+        json_response = response.json()
+
+        toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
+        toponym_coodrinates = toponym["Point"]["pos"]
+        return toponym_coodrinates
+
+
 class YandexMaps(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -21,17 +35,36 @@ class YandexMaps(QMainWindow):
         self.map_btn.clicked.connect(self.map_format)
         self.sat_btn.clicked.connect(self.map_format)
         self.skl_btn.clicked.connect(self.map_format)
-        self.map_btn.setEnabled(False)
-        self.sat_btn.setEnabled(False)
-        self.skl_btn.setEnabled(False)
+        self.search_btn.clicked.connect(self.search_request)
+        self.delete_btn.clicked.connect(self.delete_marker)
+        self.map_btn.setFocusPolicy(Qt.NoFocus)
+        self.sat_btn.setFocusPolicy(Qt.NoFocus)
+        self.skl_btn.setFocusPolicy(Qt.NoFocus)
+        self.search_btn.setFocusPolicy(Qt.NoFocus)
+        self.delete_btn.setFocusPolicy(Qt.NoFocus)
         self.count = 0
+
+    def search_request(self):
+        try:
+            coords = geocode(self.search_line.text())
+            self.request_params["ll"] = ",".join(coords.split())
+            self.request_params["pt"] = f"{','.join(coords.split())},vkbkm"
+            self.image_update()
+        except Exception:
+            self.statusBar().showMessage("Некорректный запрос. Попробуйте еще раз.", 1000)
+
+    def delete_marker(self):
+        if "pt" in self.request_params:
+            self.request_params.pop("pt")
+        self.search_line.setText("")
+        self.image_update()
 
     def image_update(self):
         response = requests.get(self.server, params=self.request_params)
 
         if not response:
             print("Ошибка выполнения запроса:")
-            print(self.map_request)
+            print(response.url)
             print("Http статус:", response.status_code, "(", response.reason, ")")
             sys.exit(1)
 
@@ -43,23 +76,15 @@ class YandexMaps(QMainWindow):
         self.map.setPixmap(self.pixmap)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_PageDown:
+        if event.key() == Qt.Key_PageUp:
             self.scale_update('/')
-        elif event.key() == Qt.Key_PageUp:
+        elif event.key() == Qt.Key_PageDown:
             self.scale_update('*')
         else:
             self.next_view(event)
 
     def mousePressEvent(self, event):
-        if self.count % 2 == 0:
-            self.map_btn.setEnabled(True)
-            self.sat_btn.setEnabled(True)
-            self.skl_btn.setEnabled(True)
-        else:
-            self.map_btn.setEnabled(False)
-            self.sat_btn.setEnabled(False)
-            self.skl_btn.setEnabled(False)
-        self.count += 1
+        self.search_line.setEnabled(not self.search_line.isEnabled())
 
     def scale_update(self, action):
         new_scale = eval(f"{float(self.request_params['spn'].split(',')[0])}{action}2")
@@ -78,8 +103,13 @@ class YandexMaps(QMainWindow):
             l1 -= spn * 2.6
         if event.key() == Qt.Key_Right:
             l1 += spn * 2.6
-        self.request_params['ll'] = f'{str(l1)},{str(l2)}'
-        self.image_update()
+        if l2 >= 90 or l2 <= -90 or l1 >= 180 or l1 <= -180:
+            l1, l2 = 37.617563, 55.755841
+            self.request_params['ll'] = f'{str(l1)},{str(l2)}'
+            self.image_update()
+        else:
+            self.request_params['ll'] = f'{str(l1)},{str(l2)}'
+            self.image_update()
 
     def map_format(self):
         if self.sender().objectName() == 'map_btn':
@@ -104,3 +134,4 @@ if __name__ == '__main__':
     ex.show()
     sys.excepthook = except_hook
     sys.exit(app.exec())
+    
