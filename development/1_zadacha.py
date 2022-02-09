@@ -10,7 +10,7 @@ from PyQt5 import uic
 class YandexMaps(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('maps.ui', self)
+        uic.loadUi('maps_0.ui', self)
         self.server = 'http://static-maps.yandex.ru/1.x/'
         self.request_params = {
             'll': '37.530887,55.703118',

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>950</width>
     <height>495</height>
    </rect>
   </property>
@@ -37,7 +37,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>600</width>
+      <width>650</width>
       <height>450</height>
      </rect>
     </property>
@@ -51,7 +51,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>610</x>
       <y>90</y>
       <width>31</width>
       <height>31</height>
@@ -72,7 +72,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>610</x>
       <y>50</y>
       <width>31</width>
       <height>31</height>
@@ -93,7 +93,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>610</x>
       <y>10</y>
       <width>31</width>
       <height>31</height>
@@ -111,7 +111,7 @@
    <widget class="QLineEdit" name="search_line">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>660</x>
       <y>10</y>
       <width>241</width>
       <height>31</height>
@@ -121,7 +121,7 @@
    <widget class="QPushButton" name="search_btn">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>900</x>
       <y>10</y>
       <width>41</width>
       <height>31</height>
@@ -134,7 +134,7 @@
    <widget class="QPushButton" name="delete_btn">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>660</x>
       <y>50</y>
       <width>241</width>
       <height>31</height>
@@ -147,7 +147,7 @@
    <widget class="QTextBrowser" name="full_address">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>660</x>
       <y>100</y>
       <width>256</width>
       <height>91</height>
@@ -160,7 +160,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>660</x>
       <y>200</y>
       <width>31</width>
       <height>31</height>
@@ -178,7 +178,8 @@
      <string>📫</string>
     </property>
     <property name="icon">
-     <iconset theme="map"/>
+     <iconset theme="map">
+      <normaloff>.</normaloff>.</iconset>
     </property>
    </widget>
   </widget>
@@ -187,7 +188,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>950</width>
      <height>21</height>
     </rect>
    </property>

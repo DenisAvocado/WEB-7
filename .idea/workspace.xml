@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38acc91c-d1dd-410b-971e-19b645221e9b" name="Changes" comment="end">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_02_2022_21_12_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_02_2022_21_12__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_zadacha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2_zadacha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/3_zadacha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4_zadacha_old.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5-6_zadachi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_zadacha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8-10 zadacha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps_0.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps_1.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps_2.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps_3.ui" beforeDir="false" />
+    <list default="true" id="38acc91c-d1dd-410b-971e-19b645221e9b" name="Changes" comment="Yandex_Maps_can_search_everything_in_the_world">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/11-12_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/development/11-12_zadacha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/1_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/development/1_zadacha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/2_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/development/2_zadacha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/3_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/development/3_zadacha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/5_6_7_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/development/5_6_7_zadacha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/development/8_10_zadacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/development/8_10_zadacha.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,38 +23,24 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="ProjectId" id="24p8W9KABdk7y1ZRVHVrv35bPRx" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Python/Винг" />
-  </component>
-  <component name="RunManager" selected="Python.8-10 zadacha">
-    <configuration name="1_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.11-12_zadacha">
+    <configuration name="11-12_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Gip4eer\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/development" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1_zadacha.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/development/11-12_zadacha.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -74,19 +49,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="2_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2_zadacha (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Gip4eer\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/development" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2_zadacha.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/development/2_zadacha.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -95,19 +70,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="3_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="4_zadacha (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Gip4eer\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/development" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/3_zadacha.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/development/4_zadacha.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -116,19 +91,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="4_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="5_6_7_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Gip4eer\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/development" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/4_zadacha.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/development/5_6_7_zadacha.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -137,19 +112,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="8-10 zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="8_10_zadacha" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Gip4eer\AppData\Local\Programs\Python\Python39\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/development" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/8-10 zadacha.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/development/8_10_zadacha.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,59 +135,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.8-10 zadacha" />
-        <item itemvalue="Python.4_zadacha" />
-        <item itemvalue="Python.3_zadacha" />
-        <item itemvalue="Python.2_zadacha" />
-        <item itemvalue="Python.1_zadacha" />
+        <item itemvalue="Python.11-12_zadacha" />
+        <item itemvalue="Python.8_10_zadacha" />
+        <item itemvalue="Python.5_6_7_zadacha" />
+        <item itemvalue="Python.4_zadacha (1)" />
+        <item itemvalue="Python.2_zadacha (1)" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="38acc91c-d1dd-410b-971e-19b645221e9b" name="Changes" comment="" />
-      <created>1644316199614</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1644316199614</updated>
-    </task>
-    <task id="LOCAL-00001" summary="qq">
-      <created>1644321990960</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1644321990960</updated>
-    </task>
-    <task id="LOCAL-00002" summary="qq">
-      <created>1644338656400</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1644338656400</updated>
-    </task>
-    <task id="LOCAL-00003" summary="qq">
-      <created>1644339639214</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1644339639214</updated>
-    </task>
-    <task id="LOCAL-00004" summary="end">
-      <created>1644402199681</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1644402199681</updated>
-    </task>
-    <task id="LOCAL-00005" summary="end">
-      <created>1644403381707</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1644403381707</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,16 +151,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Bobkov" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="qq" />
-    <MESSAGE value="end" />
-    <option name="LAST_COMMIT_MESSAGE" value="end" />
   </component>
 </project>
